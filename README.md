@@ -1,6 +1,18 @@
-# PawPal+ (Module 2 Project)
+# PawPal+
 
-You are building **PawPal+**, a Streamlit app that helps a pet owner plan care tasks for their pet.
+**PawPal+** is a Streamlit app that helps pet owners stay on top of daily care — walks, feeding, meds, grooming, and more — by turning a list of tasks into a realistic, conflict-free schedule.
+
+<a href="Streamlit_App.png" target="_blank"><img src='Streamlit_App.png' title='PawPal App' width='' alt='PawPal App' class='center-block' /></a>
+
+## Features
+
+- **Sorts tasks by time** — all tasks are ordered chronologically by their HH:MM start time across every pet
+- **Generates a daily plan** — a greedy algorithm fills the owner's available time budget, prioritizing high-priority tasks and earlier time slots first
+- **Daily and weekly recurrence** — completing a recurring task automatically queues the next one; future occurrences stay hidden until their due date
+- **Slot-budget warnings** — warns when a time slot (morning, afternoon, evening, or night) is overloaded beyond its realistic capacity
+- **Conflict warnings** — flags any two tasks across different pets that share the exact same start time
+- **Filters tasks** — tasks can be filtered by pet, completion status, or both
+- **Explains the plan** — a plain-language summary shows what was scheduled, what was skipped (and why), and any conflicts found
 
 ## Scenario
 
@@ -9,8 +21,6 @@ A busy pet owner needs help staying consistent with pet care. They want an assis
 - Track pet care tasks (walks, feeding, meds, enrichment, grooming, etc.)
 - Consider constraints (time available, priority, owner preferences)
 - Produce a daily plan and explain why it chose that plan
-
-Your job is to design the system first (UML), then implement the logic in Python, then connect it to the Streamlit UI.
 
 ## What you will build
 
