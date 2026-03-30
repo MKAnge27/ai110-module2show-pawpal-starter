@@ -41,3 +41,27 @@ pip install -r requirements.txt
 5. Add tests to verify key behaviors.
 6. Connect your logic to the Streamlit UI in `app.py`.
 7. Refine UML so it matches what you actually built.
+
+## Testing PawPal+
+
+### Run the test suite
+
+```bash
+python -m pytest tests/test_pawpal.py -v
+```
+
+### What the tests cover
+
+| Test | Behavior verified |
+|---|---|
+| `test_mark_complete_changes_status` | Marking a task complete flips `completed` to `True` |
+| `test_add_task_increases_pet_task_count` | Appending a task to a pet's list increments the count |
+| `test_sort_by_time_returns_chronological_order` | `sort_by_time()` returns tasks ordered earliest HH:MM first |
+| `test_completing_daily_task_creates_next_occurrence` | Completing a `daily` task appends a new task due the following day |
+| `test_completing_non_recurring_task_returns_none` | Completing a non-recurring task (e.g. `monthly`) returns `None` — no phantom recurrence |
+| `test_detect_time_conflicts_flags_duplicate_start_times` | Two tasks on different pets sharing the same start time produce a conflict warning |
+| `test_detect_time_conflicts_no_warning_when_times_differ` | Tasks at distinct times produce zero false-positive warnings |
+
+### Confidence Level: ★★★★☆ (4/5)
+
+The core scheduling loop, chronological sorting, and time-conflict detection all behave correctly under both happy-path and edge-case conditions. One star is withheld because `mark_task_complete` silently skips rescheduling for `every_other_day`, `biweekly`, and `monthly` frequencies — those tasks stop recurring after the first completion despite being listed in `FREQUENCY_INTERVALS`. That gap is known and documented but not yet fixed.
